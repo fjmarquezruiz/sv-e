@@ -1,0 +1,72 @@
+body {font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	color: #000000;
+	background-color: #FFFFFF;
+	SCROLLBAR-FACE-COLOR: #CCCCCC;
+	SCROLLBAR-SHADOW-COLOR: #000000; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #CCCCCC; 
+	SCROLLBAR-3DLIGHT-COLOR: #000000; 
+	SCROLLBAR-ARROW-COLOR: #000000; 
+	SCROLLBAR-TRACK-COLOR: #FFFFFF; 
+	SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;}
+td, th {font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-decoration: none;
+    color: #000000;
+    background-color: #FFFFFF;}
+td.grande {font-size: 40px;}
+td.tipo1 {text-decoration: underline;}
+
+caption {font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #000000;
+    background-color: #FFFFFF;}
+    	   
+a {font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	color: #000000;
+	background-color: #FFFFFF;}
+a:hover {background-color: #CCCCCC;}
+a:active {background-color: #CCCCCC;}
+a:link {color: #000000;}
+a:visited {color: #000000;}
+
+h2, h1 , p {font-family: Verdana, Arial, Helvetica, sans-serif;}
+
+input, select, option {font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	color: #000000;
+	background-color: #FFFFFF;
+	border: 1px #000000 solid;}
+input.conborde {border: 1px #000000 solid;}
+input.sinborde {border: 0px #000000 solid;}
+input.boton {cursor: hand; border: 1px #000000 solid;}
+textarea {font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-style: normal; 
+	font-weight: normal; 
+	font-variant: normal; 
+	color: #000000; 
+	text-decoration: none; 
+	background-color: #FFFFFF; 
+	text-align: justify; 
+	border: 1px #000000 solid; 
+	cursor: text; 
+	background-color: #FFFFFF;
+	SCROLLBAR-FACE-COLOR: #FFFFFF;
+	SCROLLBAR-SHADOW-COLOR: #000000; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #FFFFFF; 
+	SCROLLBAR-3DLIGHT-COLOR: #000000; 
+	SCROLLBAR-ARROW-COLOR: #000000; 
+	SCROLLBAR-TRACK-COLOR: #FFFFFF; 
+	SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;}
+	
+li {list-style-type: disc; margin-left: 25px;}
+	
+.tipoGRIS {background-color: #CCCCCC;}
+.conborde {border: 1px #000000 solid;}

@@ -3,7 +3,7 @@
 include('./includes/cabecera.inc');
 ?>
 
-<h3>No es un usuari@ autorizado.</h3>
+<h3>No es un usuari@ autorizad@.</h3>
 Su <i>login</i> o <i>password</i> ha fallado, intentelo de nuevo.<br><br>
 
 <a href='./index.php'>volver a entrada</a><br>

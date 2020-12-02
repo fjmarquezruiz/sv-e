@@ -16,13 +16,13 @@ $acciontemp = $_POST['accion'];
 // para realizar una accion concreta.
 switch($acciontemp)
 {
-	case 1: $accion = "añadir Encuestas";
+	case 1: $accion = "añadir encuestas";
 			accion1();
 			break;
-	case 3: $accion = "eliminar Encuestas [1]";
+	case 3: $accion = "eliminar encuestas [1]";
 			accion3();
 			break;
-	case 4: $accion = "buscar Encuestas";
+	case 4: $accion = "buscar encuestas";
 			accion4();
 			break;
 	case 5: $accion = "añadir pregunta";
@@ -34,7 +34,7 @@ switch($acciontemp)
 	case 7: $accion = "añadir opciones (2)";
 			accion7();
 			break;
-	case 8: $accion = "eliminar Encuestas [2]";
+	case 8: $accion = "eliminar encuestas [2]";
 			accion8();
 			break;
 	default: error();
@@ -52,7 +52,7 @@ function error()
 
 // -----------------------------------------------------------------------------------------
 // Funcion que crea la variable de sesion donde se almacena temporalmente los datos,
-// Preguntas y respuestas de la encuesta que se va a añadir.
+// preguntas y respuestas de la encuesta que se va a añadir.
 function accion1()
 {
 	// Importacion a la funcion de las variable globales que seran usadas.
@@ -66,10 +66,10 @@ function accion1()
 	{
 		// Sentencia SQL que busca el ultimo 'codigo_encuesta' insertado en la tabla.
 		// "Encuestas".
-		$sentencia_sql="SELECT * FROM Encuestas ORDER BY Codigo_Encuesta";
+		$sentencia_sql="SELECT * FROM encuestas ORDER BY Codigo_Encuesta";
 		
 		// Ejecucion de la sentencia SQL.
-		$link=conecta("fjmarkez_es_db");
+		$link=conecta("votaciones");
 		
 		$sql = mysql_query($sentencia_sql);
 		
@@ -97,7 +97,7 @@ function accion1()
 	  	
 	    // Sentencia SQL que inserta 'la_encuesta' en la tabla "Encuestas".
 	    
-    	$sentencia_sql="INSERT INTO Encuestas VALUES (";
+    	$sentencia_sql="INSERT INTO encuestas VALUES (";
     	$sentencia_sql.="'".$ultimo_codigo."',";
     	$sentencia_sql.="'".$_POST['Titulo_Encuesta']."',";
     	$sentencia_sql.="'".$_POST['Fecha_Inicio']."',";
@@ -105,7 +105,7 @@ function accion1()
     	$sentencia_sql.="'".$id."')";
 			
     	
-    	$link=conecta("fjmarkez_es_db");
+    	$link=conecta("votaciones");
     	
 		$sql = mysql_query($sentencia_sql);
 		
@@ -116,12 +116,12 @@ function accion1()
 		
 		desconecta($link);
 		
-		// Si se quiere añadir Preguntas a la encuesta recien creada se va a
+		// Si se quiere añadir preguntas a la encuesta recien creada se va a
 		// "adm_encuestas2.php" [accion5].
     	echo "<form action='adm_encuestas2.php' name='Formulario' method='POST'>\n";
     	echo "<input type='hidden' name='accion' value='5'>\n";
 		echo "</form>\n";
-		echo "<a href='javascript:document.Formulario.submit()'>añadir Preguntas</a><br>\n";
+		echo "<a href='javascript:document.Formulario.submit()'>añadir preguntas</a><br>\n";
  	    	
 	} 
 	else
@@ -134,7 +134,7 @@ function accion1()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion para mostrar y seleccionar los Encuestas a eliminar segun el criterio pasado desde
+// Funcion para mostrar y seleccionar los encuestas a eliminar segun el criterio pasado desde
 // "adm_encuestas1.php" [accion3].
 function accion3()
 {
@@ -142,7 +142,7 @@ function accion3()
 	$buscartemp = $_POST['buscar'];
 	$campotemp = $_POST['campo'];
 	
-	echo "<h3>Eliminar Encuestas</h3><br>";
+	echo "<h3>Eliminar encuestas</h3><br>";
 	
 	// Parte de la sentencia SQL para hacer una seleccion segun el criterio pasado.
 	$condicion_sql=$campotemp." LIKE '%".$buscartemp."%'";
@@ -157,7 +157,7 @@ function accion3()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra las Encuestas segun el criterio pasado desde "adm_encuestas1.php"
+// Funcion que muestra las encuestas segun el criterio pasado desde "adm_encuestas1.php"
 // [accion4].
 function accion4()
 {
@@ -171,7 +171,7 @@ function accion4()
 	echo "<h3>".$accion."</h3><br>";
 	
 	// Parte de la sentencia SQL para hacer una seleccion segun el criterio pasado. Queda
-	// por codificar la busqueda de Encuestas entre dos fechas...
+	// por codificar la busqueda de encuestas entre dos fechas...
 	$condicion_sql=$campotemp." LIKE '%".$buscartemp."%'";
 	
 	// 'muestra' es una funcion del archivo "funciones.inc", en este caso mostrara una tabla
@@ -183,7 +183,7 @@ function accion4()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra el formulario para añadir Preguntas a la encuesta recien creada en
+// Funcion que muestra el formulario para añadir preguntas a la encuesta recien creada en
 // "adm_encuestas2.php" [accion1].
 function accion5()
 {
@@ -197,7 +197,7 @@ function accion5()
 	if (isset($_SESSION['la_encuesta']))
 	{
 		echo "<h4>Encuesta: \"".$_SESSION['la_encuesta']->titulo_encuesta."\"</h4>";
-		// Formulario para añadir Preguntas de la encuesta, se redirigira a
+		// Formulario para añadir preguntas de la encuesta, se redirigira a
 		// "adm_encuestas2.php" [accion6].
 		echo "<form action='adm_encuestas2.php' name='Formulario' method='POST'>\n";
 
@@ -206,8 +206,8 @@ function accion5()
 		
 		echo "<tr>\n";
 			echo "<th valign=middle colspan=3>\n";
-			// Obtiene el valor de la variable 'contador_Preguntas' del objeto 'la_encuesta'.
-			$pregunta_numero=$_SESSION['la_encuesta']->contador_Preguntas;
+			// Obtiene el valor de la variable 'contador_preguntas' del objeto 'la_encuesta'.
+			$pregunta_numero=$_SESSION['la_encuesta']->contador_preguntas;
 			$pregunta_numero++;
 			echo "Pregunta nº ".$pregunta_numero;
 			echo "</th>";
@@ -240,7 +240,7 @@ function accion5()
 			echo "<input type='reset' value='Borrar' class='boton'>\n";
 			echo "</td>\n";
 			echo "<td align='center' valign='middle'>\n";
-			echo "<input type='button' value='Enviar' onclick='valida_".$acciontemp."_Encuestas(this.form)' class='boton'>\n";
+			echo "<input type='button' value='Enviar' onclick='valida_".$acciontemp."_encuestas(this.form)' class='boton'>\n";
 			echo "</td>\n";
 		echo "</tr>\n";
 		echo "</table>\n";
@@ -268,20 +268,20 @@ function accion6()
 	// muestra el formulario y se realiza la insercion.
 	if (isset($_SESSION['la_encuesta']))
 	{
-		$numero_pregunta = $_SESSION['la_encuesta']->contador_Preguntas;
+		$numero_pregunta = $_SESSION['la_encuesta']->contador_preguntas;
 		$numero_pregunta++;
 		
 		$_SESSION['la_encuesta']->new_pregunta($numero_pregunta,$_POST['Titulo_Pregunta']);
 				
-		$numero_pregunta = $_SESSION['la_encuesta']->contador_Preguntas;
+		$numero_pregunta = $_SESSION['la_encuesta']->contador_preguntas;
 		
 		// Sentencia SQL para la insercion de la pregunta en la tabla "Preguntas".
-    	$sentencia_sql="INSERT INTO Preguntas VALUES (";
+    	$sentencia_sql="INSERT INTO preguntas VALUES (";
     	$sentencia_sql.=$_SESSION['la_encuesta']->codigo_encuesta.",";
     	$sentencia_sql.=$numero_pregunta.",";
     	$sentencia_sql.="'".$_POST['Titulo_Pregunta']."')";
     	
-    	$link=conecta("fjmarkez_es_db");
+    	$link=conecta("votaciones");
     	
 		$sql = mysql_query($sentencia_sql);
 		
@@ -297,11 +297,11 @@ function accion6()
 			// las opciones de la pregunta.
 			
 			echo "<h4>Encuesta: \"".$_SESSION['la_encuesta']->titulo_encuesta."\"</h4>\n";
-			echo "<b> Pregunta nº ".$numero_pregunta.": \"".$_SESSION['la_encuesta']->Preguntas[$numero_pregunta]->titulo_pregunta."\"</b><p>\n";
+			echo "<b> Pregunta nº ".$numero_pregunta.": \"".$_SESSION['la_encuesta']->preguntas[$numero_pregunta]->titulo_pregunta."\"</b><p>\n";
 			
 			echo "<b> Contestaciones: </b>\n";
 			
-			// Formulario para añadir opciones a las Preguntas de la encuesta, se dirigira
+			// Formulario para añadir opciones a las preguntas de la encuesta, se dirigira
 			// a "adm_encuestas2.php" [accion7].
 			echo "<form action='adm_encuestas2.php' name='Formulario' method='POST'>\n";
 
@@ -329,7 +329,7 @@ function accion6()
 				echo "<input type='reset' value='Borrar' class='boton'>\n";
 				echo "</td>\n";
 				echo "<td align='center' valign='middle'>\n";
-				echo "<input type='button' value='Enviar' onclick='valida_".$acciontemp."_Encuestas(this.form)' class='boton'>\n";
+				echo "<input type='button' value='Enviar' onclick='valida_".$acciontemp."_encuestas(this.form)' class='boton'>\n";
 				echo "</td>\n";
 			echo "</tr>\n";
 			
@@ -360,28 +360,28 @@ function accion7()
 	if (isset($_SESSION['la_encuesta']))
 	{
 		// Flag que sirve para mostrar un mensaje en el caso de que se hayan introducido
-		// correctamente todas las Contestaciones.
+		// correctamente todas las contestaciones.
 		$flag = true;
 		
-		$numero_pregunta = $_SESSION['la_encuesta']->contador_Preguntas;
+		$numero_pregunta = $_SESSION['la_encuesta']->contador_preguntas;
 		
 		echo "<h4>Encuesta: \"".$_SESSION['la_encuesta']->titulo_encuesta."\"</h4>\n";
-		echo "<b> Pregunta nº ".$numero_pregunta.": \"".$_SESSION['la_encuesta']->Preguntas[$numero_pregunta]->titulo_pregunta."\"</b><p>\n";
+		echo "<b> Pregunta nº ".$numero_pregunta.": \"".$_SESSION['la_encuesta']->preguntas[$numero_pregunta]->titulo_pregunta."\"</b><p>\n";
 				
 		for ($i=1; $i<=$_POST['Numero_Contestaciones']; $i++)
 		{
 			$la_contestacion = $_POST['Opcion_'.$i];
 			
-			// Sentencia SQL para la insercion de las opciones (Contestaciones) de las
-			// Preguntas en la tabla "Contestaciones".
-	    	$sentencia_sql="INSERT INTO Contestaciones VALUES (";
+			// Sentencia SQL para la insercion de las opciones (contestaciones) de las
+			// preguntas en la tabla "Contestaciones".
+	    	$sentencia_sql="INSERT INTO contestaciones VALUES (";
 	    	$sentencia_sql.=$_SESSION['la_encuesta']->codigo_encuesta.",";
 	    	$sentencia_sql.=$numero_pregunta.",";
 	    	$sentencia_sql.=$i.",";
 	    	$sentencia_sql.="\"".$la_contestacion."\",";
 	    	$sentencia_sql.="0)";
 	    	
-	    	$link=conecta("fjmarkez_es_db");
+	    	$link=conecta("votaciones");
 	    	
 			$sql = mysql_query($sentencia_sql);
 			
@@ -406,17 +406,17 @@ function accion7()
 			// el y en los objetos que de el dependan: de clase CPregunta y de clase COpcion.
 			
 			//$_SESSION['la_encuesta']->view_datos();
-			//$_SESSION['la_encuesta']->view_Preguntas();
+			//$_SESSION['la_encuesta']->view_preguntas();
 
-			echo "la pregunta y sus posibles Contestaciones han sido añadidas<br>\n";
+			echo "la pregunta y sus posibles contestaciones han sido añadidas<br>\n";
 		}		    	
 		
-		// Si se quiere añadir Preguntas a la encuesta se va a "adm_encuestas2.php"
+		// Si se quiere añadir preguntas a la encuesta se va a "adm_encuestas2.php"
 		// [accion5].
 		echo "<form action='adm_encuestas2.php' name='Formulario' method='POST'>\n";
 	    echo "<input type='hidden' name='accion' value='5'>\n";
 		echo "</form>\n";
-		echo "<a href='javascript:document.Formulario.submit()'>añadir + Preguntas</a><br>\n";
+		echo "<a href='javascript:document.Formulario.submit()'>añadir + preguntas</a><br>\n";
 			
 	}
 	else
@@ -429,9 +429,9 @@ function accion7()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que realiza la eliminacion de las Encuestas seleccionadas en "adm_encuestas2.php"
+// Funcion que realiza la eliminacion de las encuestas seleccionadas en "adm_encuestas2.php"
 // [accion3] de su tabla y de todas las tablas donde se encuentre los codigos de las
-// Encuestas a eliminar.
+// encuestas a eliminar.
 function accion8()
 {
 	// Importacion a la funcion de las variable globales que seran usadas.
@@ -444,26 +444,26 @@ function accion8()
 	// Se utiliza en esta parte la variable del PHP '$HTTP_POST_VARS' que es un array donde
 	// se encuentran todas las variables que se pasan, y tambien se usa la funcion 'strstr'
 	// que se usa para saber si una cadena es subcadena de otra.
-	$Encuestas_a_eliminar="";
+	$encuestas_a_eliminar="";
 	while (list($key, $value) = each(${"HTTP_POST_VARS"}))
 	{      
 		if (strstr($key,"usuario_")==TRUE)
 		{
-			$Encuestas_a_eliminar.="(Codigo_Encuesta = ".$value.") OR ";
+			$encuestas_a_eliminar.="(Codigo_Encuesta = ".$value.") OR ";
 		}
 	}
 	
-	if ($Encuestas_a_eliminar != "")
+	if ($encuestas_a_eliminar != "")
 	{
 		
 		// Apaño para quitar " OR " del final de la cadena 'usuarios_a_modificar'.
-		$Encuestas_a_eliminar=substr($Encuestas_a_eliminar,0,strlen($Encuestas_a_eliminar)-4);
+		$encuestas_a_eliminar=substr($encuestas_a_eliminar,0,strlen($encuestas_a_eliminar)-4);
 		
 		// Sentencia SQL para eliminacion de la tabla "Encuestas".
-		$sentencia_sql="DELETE FROM Encuestas WHERE ".$Encuestas_a_eliminar;
+		$sentencia_sql="DELETE FROM encuestas WHERE ".$encuestas_a_eliminar;
 		
 		// Ejecucion de la sentencia SQL.
-		$link=conecta("fjmarkez_es_db");
+		$link=conecta("votaciones");
 		
 		$sql = mysql_query($sentencia_sql);
 		
@@ -471,17 +471,17 @@ function accion8()
 		
 		if (!$sql) 
 		{
-			echo "<P>Consulta SQL erronea (DELETE Encuestas)</P>";
+			echo "<P>Consulta SQL erronea (DELETE encuestas)</P>";
 		}
 		else
 		{
-			echo "<P>Se ha producido la eliminacion en la tabla 'Encuestas'</P>";
+			echo "<P>Se ha producido la eliminacion en la tabla 'encuestas'</P>";
 			
 			// Sentencia SQL para la eliminacion de la tabla "Preguntas".
-			$sentencia_sql="DELETE FROM Preguntas WHERE ".$Encuestas_a_eliminar;
+			$sentencia_sql="DELETE FROM preguntas WHERE ".$encuestas_a_eliminar;
 		
 			// Ejecucion de la sentencia SQL.
-			$link=conecta("fjmarkez_es_db");
+			$link=conecta("votaciones");
 			
 			$sql = mysql_query($sentencia_sql);
 			
@@ -489,17 +489,17 @@ function accion8()
 			
 			if (!$sql) 
 			{
-				echo "<P>Consulta SQL erronea (DELETE Preguntas)</P>";
+				echo "<P>Consulta SQL erronea (DELETE preguntas)</P>";
 			}
 			else
 			{
-				echo "<P>Se ha producido la eliminacion en la tabla 'Preguntas'</P>";
+				echo "<P>Se ha producido la eliminacion en la tabla 'preguntas'</P>";
 				
 				// Sentencia SQL para la eliminacion en la tabla "Contestaciones".
-				$sentencia_sql="DELETE FROM Contestaciones WHERE ".$Encuestas_a_eliminar;
+				$sentencia_sql="DELETE FROM contestaciones WHERE ".$encuestas_a_eliminar;
 		
 				// Ejecucion de la sentencia SQL.
-				$link=conecta("fjmarkez_es_db");
+				$link=conecta("votaciones");
 				
 				$sql = mysql_query($sentencia_sql);
 				
@@ -507,7 +507,7 @@ function accion8()
 				
 				if (!$sql) 
 				{
-					echo "<P>Consulta SQL erronea (DELETE Contestaciones)</P>";
+					echo "<P>Consulta SQL erronea (DELETE contestaciones)</P>";
 				}
 				else
 				{

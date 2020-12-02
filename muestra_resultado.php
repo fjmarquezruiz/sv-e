@@ -1,5 +1,5 @@
 <?php 
-// Inclusion del codigo de seguridad de los Votantes, si no pasa por aqui no se podra
+// Inclusion del codigo de seguridad de los votantes, si no pasa por aqui no se podra
 // ver la pagina.
 include('./includes/seguridad_vot.inc');
 
@@ -18,8 +18,8 @@ $que_encuesta=$_POST['que_encuesta'];
 
 // 1 ------------------------------------------------------------------------------------------------
 // Creacion y ejecucion de la sentencia SQL que va a mostrar la encuesta que ha sido elegida
-$sentencia_sql = "SELECT Titulo_Encuesta FROM Encuestas WHERE Codigo_Encuesta = ".$que_encuesta;
-$link1=conecta("fjmarkez_es_db");
+$sentencia_sql = "SELECT Titulo_Encuesta FROM encuestas WHERE Codigo_Encuesta = ".$que_encuesta;
+$link1=conecta("votaciones");
 $sql1 = mysql_query($sentencia_sql);
 if (!$sql1) 
 {
@@ -37,10 +37,10 @@ else
 		}while ($row1 = mysql_fetch_row($sql1));
 		desconecta($link1);
 // 2 ------------------------------------------------------------------------------------------------
-		// Creacion de la sentencia SQL, y su ejecucion, que muestra las Preguntas asociadas
+		// Creacion de la sentencia SQL, y su ejecucion, que muestra las preguntas asociadas
 		// a la encuesta elegida.
-		$sentencia_sql = "SELECT Codigo_Pregunta,Titulo_Pregunta FROM Preguntas WHERE Codigo_Encuesta = ".$que_encuesta;
-		$enlace2=conecta("fjmarkez_es_db");
+		$sentencia_sql = "SELECT Codigo_Pregunta,Titulo_Pregunta FROM preguntas WHERE Codigo_Encuesta = ".$que_encuesta;
+		$enlace2=conecta("votaciones");
 		$sql2 = mysql_query($sentencia_sql);
 		if (!$sql2) 
 		{
@@ -66,8 +66,8 @@ else
 // 3 ------------------------------------------------------------------------------------------------
 					// Sentencia SQL que calcula la suma total de votos realizados, esta 
 					// sentencia es necesaria para realizar la estadistica de la encuesta.
-					$sentencia_sql = "SELECT SUM(Cantidad_Votos) FROM Contestaciones WHERE Codigo_Encuesta = ".$que_encuesta." AND Codigo_Pregunta = ".$que_pregunta;
-					$link3=conecta("fjmarkez_es_db");
+					$sentencia_sql = "SELECT SUM(Cantidad_Votos) FROM contestaciones WHERE Codigo_Encuesta = ".$que_encuesta." AND Codigo_Pregunta = ".$que_pregunta;
+					$link3=conecta("votaciones");
 					$sql3 = mysql_query($sentencia_sql);
 					if (!$sql3) 
 					{
@@ -82,10 +82,10 @@ else
 							$total_votos=$row3[0];
 							
 // 4 ------------------------------------------------------------------------------------------------
-							// Sentencia que hace que se muestre las Contestaciones de las
-							// Preguntas de la encuesta y para hallar la estadistica de ellas.
-							$sentencia_sql = "SELECT Codigo_Opcion,Titulo_Opcion,Cantidad_Votos FROM Contestaciones WHERE Codigo_Encuesta = ".$que_encuesta." AND Codigo_Pregunta = ".$que_pregunta;
-							$link4=conecta("fjmarkez_es_db");
+							// Sentencia que hace que se muestre las contestaciones de las
+							// preguntas de la encuesta y para hallar la estadistica de ellas.
+							$sentencia_sql = "SELECT Codigo_Opcion,Titulo_Opcion,Cantidad_Votos FROM contestaciones WHERE Codigo_Encuesta = ".$que_encuesta." AND Codigo_Pregunta = ".$que_pregunta;
+							$link4=conecta("votaciones");
 							$sql4 = mysql_query($sentencia_sql);
 							if (!$sql4) 
 							{
@@ -162,7 +162,7 @@ else
 }
 // 1 ------------------------------------------------------------------------------------------------
 echo "<br>\n";
-echo "<a href='./index.php'>salir</a> | <a href='./encuestas.php'>Encuestas</a><br>\n";	
+echo "<a href='./index.php'>salir</a> | <a href='./encuestas.php'>encuestas</a><br>\n";	
 ?>
 
 <?php 

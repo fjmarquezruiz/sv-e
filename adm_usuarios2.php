@@ -23,13 +23,13 @@ $acciontemp = $_POST['accion'];
 // orden en que se encuentran en la base de datos para facilitar la codificacion futura.
 switch ($tablatemp)
 {
-	case 1: $tabla = "Votantes";
+	case 1: $tabla = "votantes";
 			$campos = array("titulo" => array("Codigo","Login","Password","Nombre","Apellidos"),
 							"nombre" => array("Codigo_Votante","Login_Votante","Password_Votante","Nombre","Apellidos"),
 							"tipo" => array("hidden","text","password","password","text","text")
 							);
 			break;
-	case 2: $tabla = "Administradores";
+	case 2: $tabla = "administradores";
 			$campos = array("titulo" => array("Codigo","Login","Password"),
 							"nombre" => array("Codigo_Administrador","Login_Administrador","Password_Administrador"),
 							"tipo" => array("hidden","text","password","password")
@@ -84,7 +84,7 @@ function accion1()
 	
 	echo "<h3>".$accion."</h3>";
 		
-	$link=conecta("fjmarkez_es_db");
+	$link=conecta("votaciones");
 	$tamagno = count($campos["titulo"]);
 	// Sentencia SQL para insertar el usuario en su tabla correspondiente.
 	$sentencia_sql="INSERT INTO ".$tabla." VALUES (";
@@ -248,7 +248,7 @@ function accion6()
 		$sentencia_sql.=" WHERE ".$nombre_campo." = ".$_POST[$nombre_campo_recibido];
 		
 		// Ejecucion de la sentencia SQL
-		$link=conecta("fjmarkez_es_db");
+		$link=conecta("votaciones");
 		
 		$sql = mysql_query($sentencia_sql);
 		
@@ -327,7 +327,7 @@ function accion7()
 		$sentencia_sql="DELETE FROM ".$tabla." WHERE ".$usuarios_a_eliminar;
 		
 		// Ejecucion de la sentencia SQL
-		$link=conecta("fjmarkez_es_db");
+		$link=conecta("votaciones");
 		
 		$sql = mysql_query($sentencia_sql);
 		

@@ -7,16 +7,16 @@ $login_temp = $_POST['login_entrada'];
 $password_temp = $_POST['password_entrada'];
 
 // Se establece la conexion al servidor de la base de datos.
-$link=conecta("fjmarkez_es_db");
+$link=conecta("votaciones");
 
 // Sentencia SQL que sirve para comprobar si el login y el password pasado son de la
 // tabla 'Administradores'.
-$sentencia_sql="SELECT * FROM Administradores WHERE login_administrador='".$login_temp."' AND password_administrador='".$password_temp."'";
+$sentencia_sql="SELECT * FROM administradores WHERE login_administrador='".$login_temp."' AND password_administrador='".$password_temp."'";
 $sql = mysql_query($sentencia_sql);
 	
 if ($sql == FALSE)
 {
-	echo "<P>Consulta SQL erronea (Administradores)</P>";
+	echo "<P>Consulta SQL erronea (ADMINISTRADORES)</P>";
 	exit;
 }
 else
@@ -29,7 +29,7 @@ else
 	if ($numfilas == 0)
 	{
 		// Con esta sentencia SQL se obtiene si son de la tabla 'Votantes'.
-		$sql = mysql_query("SELECT * FROM Votantes WHERE login_votante='".$login_temp."' AND password_votante='".$password_temp."'");
+		$sql = mysql_query("SELECT * FROM votantes WHERE login_votante='".$login_temp."' AND password_votante='".$password_temp."'");
 		
 		if ($sql == FALSE)
 		{

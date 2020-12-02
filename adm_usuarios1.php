@@ -23,13 +23,13 @@ $acciontemp = $_POST['accion'];
 // orden en que se encuentran en la base de datos para facilitar la codificacion futura.
 switch ($tablatemp)
 {
-	case 1: $tabla = "Votantes";
+	case 1: $tabla = "votantes";
 			$campos = array("titulo" => array("Codigo","Login","Password","Password 2","Nombre","Apellidos"),
 							"nombre" => array("Codigo_Votante","Login_Votante","Password_Votante","Password_Votante2","Nombre","Apellidos"),
 							"tipo" => array("hidden","text","password","password","text","text")
 							);
 			break;
-	case 2: $tabla = "Administradores";
+	case 2: $tabla = "administradores";
 			$campos = array("titulo" => array("Codigo","Login","Password","Password 2"),
 							"nombre" => array("Codigo_Administrador","Login_Administrador","Password_Administrador","Password_Administrador2"),
 							"tipo" => array("hidden","text","password","password")
@@ -85,7 +85,7 @@ function accion1()
 		
 		// Sentencia SQL para averiguar el codigo de usuario que tendra el que se va a
 		// añadir.
-		$link=conecta("fjmarkez_es_db");
+		$link=conecta("votaciones");
 		
 		$sentencia_sql="SELECT * FROM ".$tabla;
 		$sql = mysql_query($sentencia_sql);
@@ -151,8 +151,8 @@ function accion1()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra el buscador para modificar uno o varios usuarios (Votantes o
-// Administradores) de su tabla.
+// Funcion que muestra el buscador para modificar uno o varios usuarios (votantes o
+// administradores) de su tabla.
 function accion2()
 {
 	// Importacion a la funcion de las variable globales que seran usadas 
@@ -165,8 +165,8 @@ function accion2()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra el buscador para eliminar uno o varios usuarios (Votantes o
-// Administradores) de su tabla.
+// Funcion que muestra el buscador para eliminar uno o varios usuarios (votantes o
+// administradores) de su tabla.
 function accion3()
 {
 	// Importacion a la funcion de las variable globales que seran usadas 
@@ -179,8 +179,8 @@ function accion3()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra el buscador para buscar uno o varios usuarios (Votantes o
-// Administradores).
+// Funcion que muestra el buscador para buscar uno o varios usuarios (votantes o
+// administradores).
 function accion4()
 {
 	// Importacion a la funcion de las variable globales que seran usadas 

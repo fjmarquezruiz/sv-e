@@ -1,5 +1,5 @@
 <?php 
-// Inclusion del codigo de seguridad de los Votantes, si no pasa por aqui no se podra
+// Inclusion del codigo de seguridad de los votantes, si no pasa por aqui no se podra
 // ver la pagina.
 include('./includes/seguridad_vot.inc');
 
@@ -19,12 +19,12 @@ include('./includes/cabecera.inc');
 		<th>
 		</th>
 		<th width=27%>
-	Encuestas NO votadas
+	encuestas NO votadas
 		</th>
 		<th width=5%>
 		</th>
 		<th width=27%>
-	Encuestas votadas
+	encuestas votadas
 		</th>
 		<th>
 		</th>
@@ -32,16 +32,16 @@ include('./includes/cabecera.inc');
 	<tr>
 		<td></td>
 		<td class="conborde" align=center>
-	<!-- OPCIONES Encuestas no VOTADAS -->
+	<!-- OPCIONES ENCUESTAS no VOTADAS -->
 <?php 
 // 1 ------------------------------------------------------------------------------------------------
 // Obtencion de la fecha actual.
 $fecha_actual = date("Ymd");
 
-// Sentencia SQL que muestra aquellas Encuestas en las que el votante no ha votado y que ha
+// Sentencia SQL que muestra aquellas encuestas en las que el votante no ha votado y que ha
 // fecha actual puede votar.
-$sentencia_sql="SELECT Encuestas.* FROM Encuestas LEFT JOIN Vota ON ((Encuestas.Codigo_Encuesta=Vota.Codigo_Encuesta) AND (Vota.Codigo_Votante = ".$id.")) WHERE (Vota.Codigo_Encuesta IS NULL) AND (Encuestas.Fecha_Fin >= ".$fecha_actual.") AND (Encuestas.Fecha_Inicio <= ".$fecha_actual.") ORDER BY Encuestas.Titulo_Encuesta";
-$link1=conecta("fjmarkez_es_db");
+$sentencia_sql="SELECT encuestas.* FROM encuestas LEFT JOIN vota ON ((encuestas.Codigo_Encuesta=vota.Codigo_Encuesta) AND (vota.Codigo_Votante = ".$id.")) WHERE (vota.Codigo_Encuesta IS NULL) AND (encuestas.Fecha_Fin >= ".$fecha_actual.") AND (encuestas.Fecha_Inicio <= ".$fecha_actual.") ORDER BY encuestas.Titulo_Encuesta";
+$link1=conecta("votaciones");
 $sql1 = mysql_query($sentencia_sql);
 if (!$sql1) 
 {
@@ -89,22 +89,22 @@ else
 	else
 	{
 		desconecta($link1);
-		echo "Has votado en todas las Encuestas disponibles";
+		echo "Has votado en todas las encuestas disponibles";
 	}
 }
 // 1 ------------------------------------------------------------------------------------------------
 ?>
-	<!-- FIN OPCIONES Encuestas no VOTADAS -->
+	<!-- FIN OPCIONES ENCUESTAS no VOTADAS -->
 		</td>
 		<td>
 		</td>
 		<td class="conborde" align=center>
-	<!-- OPCIONES DE Encuestas VOTADAS -->
+	<!-- OPCIONES DE ENCUESTAS VOTADAS -->
 <?php 
 // 3 ------------------------------------------------------------------------------------------------
-// Sentencia SQL que muestra todas las Encuestas en las que el usuario ha votado.
-$sentencia_sql = "SELECT E.Codigo_Encuesta, E.Titulo_Encuesta FROM Encuestas AS E, Vota AS V WHERE (E.Codigo_Encuesta = V.Codigo_Encuesta) AND (V.Codigo_Votante = ".$id.")";
-$link3=$link=conecta("fjmarkez_es_db");
+// Sentencia SQL que muestra todas las encuestas en las que el usuario ha votado.
+$sentencia_sql = "SELECT E.Codigo_Encuesta, E.Titulo_Encuesta FROM encuestas AS E, vota AS V WHERE (E.Codigo_Encuesta = V.Codigo_Encuesta) AND (V.Codigo_Votante = ".$id.")";
+$link3=$link=conecta("votaciones");
 $sql3 = mysql_query($sentencia_sql);
 if (!$sql3) 
 {
@@ -156,7 +156,7 @@ else
 }
 // 3 ------------------------------------------------------------------------------------------------
 ?>
-	<!-- FIN OPCIONES DE Encuestas VOTADAS -->
+	<!-- FIN OPCIONES DE ENCUESTAS VOTADAS -->
 		</td>
 		<td></td>
 	</tr>

@@ -1,5 +1,5 @@
 <?php 
-// Clase referente a las opciones de las Preguntas de las Encuestas.
+// Clase referente a las opciones de las preguntas de las encuestas.
 class COpcion
 {
 	var $codigo_opcion;
@@ -29,7 +29,7 @@ class COpcion
 	}
 }
 
-// Clase de las Preguntas de las Encuestas.
+// Clase de las preguntas de las encuestas.
 class CPregunta
 {
 	var $codigo_pregunta;
@@ -85,7 +85,7 @@ class CPregunta
 	}
 }
 
-// Clase de las Encuestas.
+// Clase de las encuestas.
 class CEncuesta
 {
 	var $codigo_encuesta;
@@ -94,8 +94,8 @@ class CEncuesta
 	var $fecha_fin;
 	var $codigo_administrador;
 	
-	var $Preguntas;
-	var $contador_Preguntas;
+	var $preguntas;
+	var $contador_preguntas;
 	
 	var $i;
 
@@ -109,7 +109,7 @@ class CEncuesta
 		$this->fecha_fin = $fin;
 		$this->codigo_administrador = $cod_adm;
 		
-		$this->contador_Preguntas = 0;
+		$this->contador_preguntas = 0;
 	}
 	
 	// Metodo o funcion que muestra el contenido de las variables de la clase.
@@ -121,32 +121,32 @@ class CEncuesta
 		echo "fecha fin = ".$this->fecha_fin."<br>";
 		echo "codigo administrador = ".$this->codigo_administrador."<br>";
 		
-		echo "cuantas Preguntas lleva? ".$this->contador_Preguntas."<br>";
+		echo "cuantas preguntas lleva? ".$this->contador_preguntas."<br>";
 	}
 	
 	// Metodo o funcion que crea una nueva pregunta, para ello la asigna a en un array
-	// ('Preguntas') donde indica su posicion en el objeto de clase CEncuesta, la pregunta
+	// ('preguntas') donde indica su posicion en el objeto de clase CEncuesta, la pregunta
 	// es un objeto de la clase CPregunta. 
 	function new_pregunta($num_pregunta,$titulo_pregunta)
 	{
-		$this->Preguntas[$num_pregunta]=new CPregunta($num_pregunta,$titulo_pregunta);
-		$this->contador_Preguntas++;
+		$this->preguntas[$num_pregunta]=new CPregunta($num_pregunta,$titulo_pregunta);
+		$this->contador_preguntas++;
 	}
 	
 	// Metodo utilizado para variar el contenido del objeto de clase CPregunta.
 	function set_pregunta($num_pregunta,$titulo_pregunta)
 	{
-		$this->Preguntas[$num_pregunta]->set_pregunta($num_pregunta,$titulo_pregunta);
+		$this->preguntas[$num_pregunta]->set_pregunta($num_pregunta,$titulo_pregunta);
 	}
 	
-	// Metodo que muestra el contenido de todas las Preguntas.
-	function view_Preguntas()
+	// Metodo que muestra el contenido de todas las preguntas.
+	function view_preguntas()
 	{
-		if ($this->contador_Preguntas > 0)
+		if ($this->contador_preguntas > 0)
 		{
-			for ($i=1;$i<=$this->contador_Preguntas;$i++)
+			for ($i=1;$i<=$this->contador_preguntas;$i++)
 			{
-				$this->Preguntas[$i]->view_pregunta();
+				$this->preguntas[$i]->view_pregunta();
 			}
 		}
 	}
@@ -156,7 +156,7 @@ class CEncuesta
 	// CPregunta pasandole el resto de parametros. 	
 	function new_opcion($num_pregunta,$num_opcion,$titulo_opcion)
 	{
-		$this->Preguntas[$num_pregunta]->new_opcion($num_opcion,$titulo_opcion);
+		$this->preguntas[$num_pregunta]->new_opcion($num_opcion,$titulo_opcion);
 	}
 }
 ?>

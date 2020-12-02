@@ -137,8 +137,8 @@ function valida_adm_usuarios(form)
 	form.submit();
 }
 
-// Funcion que valida los campos del formulario Encuestas en la pagina "administracion.php".
-function valida_adm_Encuestas(form)
+// Funcion que valida los campos del formulario encuestas en la pagina "administracion.php".
+function valida_adm_encuestas(form)
 {
 	str = "AVISOS:\n";
 	flag = false;
@@ -159,9 +159,9 @@ function valida_adm_Encuestas(form)
 	form.submit();
 }
 
-// Funcion que valida los campos del formulario añadir Votantes en la pagina
+// Funcion que valida los campos del formulario añadir votantes en la pagina
 // "adm_usuarios.php".
-function valida_1_Votantes(form)
+function valida_1_votantes(form)
 {
 	str = "AVISOS:\n";
 	flag = false;
@@ -276,9 +276,9 @@ function valida_1_Votantes(form)
 	form.submit();
 }
 
-// Funcion que valida los campos del formulario añadir Administradores en la pagina
+// Funcion que valida los campos del formulario añadir administradores en la pagina
 // 'adm_usuarios.php'.
-function valida_1_Administradores(form)
+function valida_1_administradores(form)
 {
 	str = "AVISOS:\n";
 	flag = false;
@@ -363,7 +363,7 @@ function valida_1_Administradores(form)
 	form.submit();
 }
 
-// Funcion que valida los campos del formulario modificar Votantes en la pagina
+// Funcion que valida los campos del formulario modificar votantes en la pagina
 // 'adm_usuarios.php'.
 function valida_buscador(form)
 {
@@ -394,34 +394,34 @@ function valida_buscador(form)
 	form.submit();
 }
 
-function valida_2_5_Votantes(form)
+function valida_2_5_votantes(form)
 {
 	form.submit();
 }
 
-function valida_2_5_Administradores(form)
+function valida_2_5_administradores(form)
 {
 	form.submit();
 }
 
-function valida_3_7_Votantes(form)
+function valida_3_7_votantes(form)
 {
 	form.submit();
 }
 
-function valida_3_7_Administradores(form)
+function valida_3_7_administradores(form)
 {
 	form.submit();
 }
 
-function valida_3_8_Encuestas(form)
+function valida_3_8_encuestas(form)
 {
 	form.submit();
 }
 
-// Funcion que valida los campos del formulario modificar Votantes en la pagina
+// Funcion que valida los campos del formulario modificar votantes en la pagina
 // "adm_usuarios2.php".
-function valida_5_6_Votantes(form)
+function valida_5_6_votantes(form)
 {
 	numero_usuarios = form.numero_usuarios.value;
 	str = "AVISOS:\n";
@@ -509,9 +509,9 @@ function valida_5_6_Votantes(form)
 	form.submit();
 }
 
-// Funcion que valida los campos del formulario modificar Administradores en la pagina
+// Funcion que valida los campos del formulario modificar administradores en la pagina
 // "adm_usuarios2.php".
-function valida_5_6_Administradores(form)
+function valida_5_6_administradores(form)
 {
 	numero_usuarios = form.numero_usuarios.value;
 	str = "AVISOS:\n";
@@ -569,14 +569,14 @@ function valida_5_6_Administradores(form)
 	form.submit();
 }
 
-function valida_5_6_Encuestas(form)
+function valida_5_6_encuestas(form)
 {
 	form.submit();
 }
 
 // Funcion que valida los campos de primer formulario de añadir una encuesta en la pagina
 // "adm_encuestas3.php"
-function valida_1_Encuestas(form)
+function valida_1_encuestas(form)
 {
 	str = "";
 	str = "AVISOS:\n";
@@ -642,7 +642,7 @@ function valida_1_Encuestas(form)
 }
 
 // Funcion que valida los datos de añadir una pregunta en "adm_encuestas2.php".
-function valida_5_Encuestas(form)
+function valida_5_encuestas(form)
 {
 	str = "AVISOS:\n";
 	flag = false;
@@ -665,7 +665,7 @@ function valida_5_Encuestas(form)
 	if (form.Numero_Contestaciones.value == '')
 	{
 		flag = true;
-		str = str + '- Falta nº posible Contestaciones\n';
+		str = str + '- Falta nº posible contestaciones\n';
 	}
 	else if (!es_entero(form.Numero_Contestaciones.value))
 	{
@@ -675,7 +675,7 @@ function valida_5_Encuestas(form)
 	else if (form.Numero_Contestaciones.value < 2)
 	{
 		flag = true;
-		str = str + '- El nº de Contestaciones ha de ser mayor o igual a 2 \n';
+		str = str + '- El nº de contestaciones ha de ser mayor o igual a 2 \n';
 	}
 	
 	if (flag)
@@ -688,14 +688,14 @@ function valida_5_Encuestas(form)
 }
 
 // Funcion que valida las opciones a añadir a una pregunta en la pagina "adm_encuestas2.php".
-function valida_6_Encuestas(form)
+function valida_6_encuestas(form)
 {
-	numero_Contestaciones = form.Numero_Contestaciones.value;
+	numero_contestaciones = form.Numero_Contestaciones.value;
 	str = "AVISOS:\n";
 	flag = false;
 	
 	// Verificacion del campo 'Opcion'.
-	for (i=1; i<=numero_Contestaciones; i++)
+	for (i=1; i<=numero_contestaciones; i++)
 	{
 		if (eval("form.Opcion_"+i+".value") == '')
 		{
@@ -716,24 +716,24 @@ function valida_6_Encuestas(form)
 // Funcion que valida las opciones a añadir a una pregunta en la pagina "adm_encuestas2.php".
 function valida_encuesta(form)
 {
-	cuantas_Preguntas = form.cuantas_Preguntas.value;
+	cuantas_preguntas = form.cuantas_preguntas.value;
 	str = "AVISOS:\n";
 	flag1 = false;
 	
-	// Recorrido de todas las Preguntas.
-	for (i=1; i<=cuantas_Preguntas; i++)
+	// Recorrido de todas las preguntas.
+	for (i=1; i<=cuantas_preguntas; i++)
 	{
 		// Esta variable indica si hay una contestacion seleccionada o no dentro de la
 		// pregunta.
 		// 		false => no hay seleccinada ninguna contestacion.
 		//		true => si hay una contestacion seleccionada.
 		flag2 = false;
-		// Averigua cuantas Contestaciones tiene la pregunta i.
-		cuantas_Contestaciones = eval("form.pregunta"+i+".length");
+		// Averigua cuantas contestaciones tiene la pregunta i.
+		cuantas_contestaciones = eval("form.pregunta"+i+".length");
 		
-		for (j=0; j< cuantas_Contestaciones; j++)
+		for (j=0; j< cuantas_contestaciones; j++)
 		{	
-			// Se mira todas las Contestaciones posibles que tiene la pregunta.
+			// Se mira todas las contestaciones posibles que tiene la pregunta.
 			if (eval("form.pregunta"+i+"["+j+"].checked") == false)
 			{
 				// La contestacion j no esta seleccionada.

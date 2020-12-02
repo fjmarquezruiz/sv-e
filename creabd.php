@@ -78,7 +78,7 @@ function crea(form)
 		$mensaje .= "La base de datos \"$basedatos\" existe. ";
 	}
 	// -------------------------------------------------------------------------------------
-	// Creacion de la tabla 'Votantes'
+	// Creacion de la tabla 'votantes'
 	$nombre_tabla = "Votantes";
 	$sentencia_sql = "CREATE TABLE $nombre_tabla (";
 	$sentencia_sql .= "Codigo_Votante SMALLINT UNSIGNED NOT NULL, ";
@@ -97,7 +97,7 @@ function crea(form)
 		$mensaje .= "No se ha podido crear la tabla \"$nombre_tabla\". ";
 	}
 	// -------------------------------------------------------------------------------------
-	// Creacion de la tabla 'Administradores'
+	// Creacion de la tabla 'administradores'
 	$nombre_tabla = "Administradores";
 	$sentencia_sql = "CREATE TABLE $nombre_tabla (";
 	$sentencia_sql .= "Codigo_Administrador SMALLINT UNSIGNED NOT NULL, ";
@@ -114,7 +114,7 @@ function crea(form)
 		$mensaje .= "No se ha podido crear la tabla \"$nombre_tabla\". ";
 	}
 	// -------------------------------------------------------------------------------------
-	// Creacion de la tabla 'Encuestas'
+	// Creacion de la tabla 'encuestas'
 	$nombre_tabla = "Encuestas";
 	$sentencia_sql = "CREATE TABLE $nombre_tabla (";
 	$sentencia_sql .= "Codigo_Encuesta SMALLINT UNSIGNED NOT NULL, ";
@@ -134,7 +134,7 @@ function crea(form)
 		$mensaje .= "No se ha podido crear la tabla \"$nombre_tabla\". ";
 	}
 	// -------------------------------------------------------------------------------------
-	// Creacion de la tabla 'Preguntas'
+	// Creacion de la tabla 'preguntas'
 	$nombre_tabla = "Preguntas";
 	$sentencia_sql = "CREATE TABLE $nombre_tabla (";
 	$sentencia_sql .= "Codigo_Encuesta SMALLINT UNSIGNED NOT NULL, ";
@@ -151,7 +151,7 @@ function crea(form)
 		$mensaje .= "No se ha podido crear la tabla \"$nombre_tabla\". ";
 	}
 	// -------------------------------------------------------------------------------------
-	// Creacion de la tabla 'Contestaciones'
+	// Creacion de la tabla 'contestaciones'
 	$nombre_tabla = "Contestaciones";
 	$sentencia_sql = "CREATE TABLE $nombre_tabla (";
 	$sentencia_sql .= "Codigo_Encuesta SMALLINT UNSIGNED NOT NULL, ";
@@ -170,7 +170,7 @@ function crea(form)
 		$mensaje .= "No se ha podido crear la tabla \"$nombre_tabla\". ";
 	}
 	// -------------------------------------------------------------------------------------
-	// Creacion de la tabla 'Vota'
+	// Creacion de la tabla 'vota'
 	$nombre_tabla = "Vota";
 	$sentencia_sql = "CREATE TABLE $nombre_tabla (";
 	$sentencia_sql .= "Codigo_Votante SMALLINT UNSIGNED NOT NULL, ";
@@ -189,8 +189,8 @@ function crea(form)
 	}
 	// -------------------------------------------------------------------------------------
 	// Una vez creadas todas las tablas se procede a crear un primer usuario administrador
-	// para que se pueda entrar a administrar y a crear los primeros usuarios (Votantes y
-	// Administradores). 
+	// para que se pueda entrar a administrar y a crear los primeros usuarios (votantes y
+	// administradores). 
 	// Este usuario tiene como login 'administrador' y password 'administrador', su numero
 	// codigo de administrador es el 1.
 	$nombre_tabla = "Administradores";

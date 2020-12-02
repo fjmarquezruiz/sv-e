@@ -16,16 +16,16 @@ $acciontemp = $_POST['accion'];
 // para realizar una accion concreta.
 switch($acciontemp)
 {
-	case 1: $accion = "añadir Encuestas";
+	case 1: $accion = "añadir encuestas";
 			accion1();
 			break;
-	case 2: $accion = "modificar Encuestas";
+	case 2: $accion = "modificar encuestas";
 			accion2();
 			break;
-	case 3: $accion = "eliminar Encuestas";
+	case 3: $accion = "eliminar encuestas";
 			accion3();
 			break;
-	case 4: $accion = "buscar Encuestas";
+	case 4: $accion = "buscar encuestas";
 			accion4();
 			break;
 	case 5: $accion = "ver resultados";
@@ -193,7 +193,7 @@ function accion1()
 		echo "<input type='reset' value='Borrar' class='boton'>\n";
 		echo "</td>\n";
 		echo "<td align='center' valign='middle'>\n";
-		echo "<input type='button' value='Enviar' onclick='valida_".$acciontemp."_Encuestas(this.form)' class='boton'>\n";
+		echo "<input type='button' value='Enviar' onclick='valida_".$acciontemp."_encuestas(this.form)' class='boton'>\n";
 		echo "</td>\n";
 		echo "</tr>\n";
 	echo "</table>\n";
@@ -201,7 +201,7 @@ function accion1()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra el formulario de opciones para modificar Encuestas. En la actualidad
+// Funcion que muestra el formulario de opciones para modificar encuestas. En la actualidad
 // solo se encuentra codificada la primera opcion. Estas opciones son enviadas a la pagina
 // "adm_encuestas3.php"
 function accion2()
@@ -245,7 +245,7 @@ function accion2()
 					<input type="reset" value="Borrar" class="boton">
 						</td>
 						<td align=center valign=middle width=50%>
-					<input type="button" value="Aceptar" onclick="valida_adm_Encuestas(this.form)" class="boton">
+					<input type="button" value="Aceptar" onclick="valida_adm_encuestas(this.form)" class="boton">
 						</td>
 					</tr>
 				</table>
@@ -260,7 +260,7 @@ function accion2()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra el buscador para eliminar una o varias Encuestas de su tabla.
+// Funcion que muestra el buscador para eliminar una o varias encuestas de su tabla.
 function accion3()
 {
 	// Importacion a la funcion de las variable globales que seran usadas.
@@ -268,13 +268,13 @@ function accion3()
 	
 	echo "<h3>".$accion."</h3><br>";
 	
-	// A la funcion 'buscador_Encuestas' se le pasa la tabla donde se va a buscar y la
+	// A la funcion 'buscador_encuestas' se le pasa la tabla donde se va a buscar y la
 	// siguente accion a realizar en la pagina "adm_encuestas2.php", en este caso [accion3].
-	buscador_Encuestas(0,3);
+	buscador_encuestas(0,3);
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra el buscador para buscar una o varias Encuestas de su tabla.
+// Funcion que muestra el buscador para buscar una o varias encuestas de su tabla.
 function accion4()
 {
 	// Importacion a la funcion de las variable globales que seran usadas.
@@ -282,9 +282,9 @@ function accion4()
 	
 	echo "<h3>".$accion."</h3><br>";
 	
-	// A la funcion 'buscador_Encuestas' se le pasa la tabla donde se va a buscar y la
+	// A la funcion 'buscador_encuestas' se le pasa la tabla donde se va a buscar y la
 	// siguente accion a realizar en la pagina "adm_encuestas2.php", en este caso [accion4].
-	buscador_Encuestas(0,4);
+	buscador_encuestas(0,4);
 	
 }
 
@@ -300,10 +300,10 @@ function accion5()
 
 	$fecha_actual = date("Ymd");
 	
-	// Sentencia SQL que muestra todas la Encuestas disponibles y que han sido votadas,
+	// Sentencia SQL que muestra todas la encuestas disponibles y que han sido votadas,
 	// es decir, aparecen en la tabla "Vota".
-	$sentencia_sql = "SELECT DISTINCT E.Codigo_Encuesta, E.Titulo_Encuesta FROM Encuestas AS E, Vota as V WHERE (E.Fecha_Inicio <= ".$fecha_actual.") AND (E.Codigo_Encuesta = V.Codigo_Encuesta) ORDER BY E.Titulo_Encuesta";
-	$link=conecta("fjmarkez_es_db");
+	$sentencia_sql = "SELECT DISTINCT E.Codigo_Encuesta, E.Titulo_Encuesta FROM encuestas AS E, vota as V WHERE (E.Fecha_Inicio <= ".$fecha_actual.") AND (E.Codigo_Encuesta = V.Codigo_Encuesta) ORDER BY E.Titulo_Encuesta";
+	$link=conecta("votaciones");
 	$sql = mysql_query($sentencia_sql);
 	if (!$sql) 
 	{

@@ -47,8 +47,8 @@ include('./includes/cabecera.inc');
 				<td align=center valign=middle colspan=2>
 			<select name="tabla" size=1>
 				<option value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
-				<option value="1">Votantes</option>
-				<option value="2">Administradores</option>
+				<option value="1">votantes</option>
+				<option value="2">administradores</option>
 			</select>
 				</td>
 			</tr>
@@ -88,7 +88,7 @@ include('./includes/cabecera.inc');
 		<td>
 		</td>
 		<td class="conborde">
-	<!-- OPCIONES DE Encuestas -->
+	<!-- OPCIONES DE ENCUESTAS -->
 	<form action="./adm_encuestas1.php" method="POST">
 		<table border=0 cellpadding=5 cellspacing=0>
 			<tr>
@@ -118,12 +118,12 @@ include('./includes/cabecera.inc');
 			<input type="reset" value="Borrar" class="boton">
 				</td>
 				<td align=center valign=middle width=50%>
-			<input type="button" value="Aceptar" onclick="valida_adm_Encuestas(this.form)" class="boton">
+			<input type="button" value="Aceptar" onclick="valida_adm_encuestas(this.form)" class="boton">
 				</td>
 			</tr>
 		</table>
 	</form>
-	<!-- FIN OPCIONES DE Encuestas -->
+	<!-- FIN OPCIONES DE ENCUESTAS -->
 		</td>
 		<td></td>
 	</tr>

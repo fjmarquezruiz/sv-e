@@ -1,5 +1,5 @@
 <?php 
-// Inclusion del codigo de seguridad de los Votantes, si no pasa por aqui no se podra
+// Inclusion del codigo de seguridad de los votantes, si no pasa por aqui no se podra
 // ver la pagina.
 include('./includes/seguridad_vot.inc');
 
@@ -14,17 +14,17 @@ if (isset($_SESSION['la_encuesta']))
 include('./includes/cabecera.inc');
 
 // Captura de las variables necesarias que vienen de "muestra_encuesta.php"
-$cuantas_Preguntas = $_POST['cuantas_Preguntas'];
+$cuantas_preguntas = $_POST['cuantas_preguntas'];
 $que_encuesta = $_POST['que_encuesta'];
 
-// Creacion de la sentencia SQL para actualizar la tabla 'Contestaciones'. Al realizarse se
+// Creacion de la sentencia SQL para actualizar la tabla 'contestaciones'. Al realizarse se
 // efectua el hecho de votar.
-$sentencia_sql = "UPDATE Contestaciones SET Cantidad_Votos=Cantidad_Votos+1 WHERE (Codigo_Encuesta=".$que_encuesta.") AND (";
+$sentencia_sql = "UPDATE contestaciones SET Cantidad_Votos=Cantidad_Votos+1 WHERE (Codigo_Encuesta=".$que_encuesta.") AND (";
 
-for ($i=1; $i<=$cuantas_Preguntas; $i++)
+for ($i=1; $i<=$cuantas_preguntas; $i++)
 {
 	$sentencia_sql .= "((Codigo_Pregunta=".$i.") AND (Codigo_Opcion=".$_POST['pregunta'.$i]."))";
-	if ($i < $cuantas_Preguntas)
+	if ($i < $cuantas_preguntas)
 	{
 		$sentencia_sql .= " OR ";
 	}
@@ -35,7 +35,7 @@ for ($i=1; $i<=$cuantas_Preguntas; $i++)
 }
 
 // 1 ------------------------------------------------------------------------------------------------
-$link1=conecta("fjmarkez_es_db"); 	
+$link1=conecta("votaciones"); 	
 $sql1 = mysql_query($sentencia_sql);
 desconecta($link1);
 if (!$sql1) 
@@ -47,10 +47,10 @@ else
 	
 // 2 ------------------------------------------------------------------------------------------------
 	// Sentencia SQL para dejar constancia que el votante ha votado, hecho, la encuesta,
-	// para ello se introduce en la tabla 'Vota' su codigo y el codigo de la encuesta
+	// para ello se introduce en la tabla 'vota' su codigo y el codigo de la encuesta
 	// realizada.
-	$sentencia_sql = "INSERT INTO Vota VALUES (".$id.",".$que_encuesta.")";
-	$link2=conecta("fjmarkez_es_db"); 	
+	$sentencia_sql = "INSERT INTO vota VALUES (".$id.",".$que_encuesta.")";
+	$link2=conecta("votaciones"); 	
 	$sql2 = mysql_query($sentencia_sql);
 	desconecta($link2);
 	if (!$sql2) 
@@ -68,7 +68,7 @@ else
 // 1 ------------------------------------------------------------------------------------------------
 
 echo "<br>\n";
-echo "<a href='./index.php'>salir</a> | <a href='./encuestas.php'>Encuestas</a><br>\n";	
+echo "<a href='./index.php'>salir</a> | <a href='./encuestas.php'>encuestas</a><br>\n";	
 ?>
 <?php 
 // Inclusion del pie de la pagina html.

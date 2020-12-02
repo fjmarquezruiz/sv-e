@@ -40,7 +40,7 @@ function error()
 }
 
 // -----------------------------------------------------------------------------------------
-// Funcion que muestra todas aquellas Encuestas que son susceptibles de sufrir cambios, las
+// Funcion que muestra todas aquellas encuestas que son susceptibles de sufrir cambios, las
 // que aun no han comenzado. datos de la encuesta (1).
 function accion1()
 {
@@ -49,7 +49,7 @@ function accion1()
 	
 	echo "<h3>".$accion."</h3><br>";
 	
-	echo "Elige una encuesta, solo aparecen aquellas Encuestas que no han comenzado a fecha de hoy.";
+	echo "Elige una encuesta, solo aparecen aquellas encuestas que no han comenzado a fecha de hoy.";
 	
 	// Array que contiene los nombre de los campos en la tabla "Encuestas" y como se
 	// mostraran.
@@ -76,10 +76,10 @@ function accion1()
 		// se le pase, en este caso devuelve la fecha en formato 19990101
 		$fecha_actual=date("Ymd");
 		
-		// Sentencia SQL que muestra aquellas Encuestas que aun no han comenzado.
-		$sentencia_sql="SELECT Codigo_Encuesta, Titulo_Encuesta, Fecha_Inicio FROM Encuestas WHERE (Fecha_Inicio > ".$fecha_actual.") ORDER BY Codigo_Encuesta";
+		// Sentencia SQL que muestra aquellas encuestas que aun no han comenzado.
+		$sentencia_sql="SELECT Codigo_Encuesta, Titulo_Encuesta, Fecha_Inicio FROM encuestas WHERE (Fecha_Inicio > ".$fecha_actual.") ORDER BY Codigo_Encuesta";
 		
-		$link=conecta("fjmarkez_es_db");
+		$link=conecta("votaciones");
 		
 		$sql = mysql_query($sentencia_sql);
 		
@@ -117,7 +117,7 @@ function accion1()
 	echo "<!-- FIN formulario para buscar una base de datos -->\n";
 	
 	echo "<br>\n";
-	echo "<a href='./index.php'>salir</a> | <a href='./administracion.php'>administracion</a> | <a href='javascript:history.go(-1)'>modificacion de Encuestas</a><br>\n";	
+	echo "<a href='./index.php'>salir</a> | <a href='./administracion.php'>administracion</a> | <a href='javascript:history.go(-1)'>modificacion de encuestas</a><br>\n";	
 }
 
 // -----------------------------------------------------------------------------------------
@@ -135,9 +135,9 @@ function accion5()
 	$que_accion = $_POST['accion'];
 		
 	// Sentencia SQL que muestra los datos de la encuesta seleccionada.
-	$sentencia_sql="SELECT * FROM Encuestas WHERE (Codigo_Encuesta = ".$que_encuesta.")";
+	$sentencia_sql="SELECT * FROM encuestas WHERE (Codigo_Encuesta = ".$que_encuesta.")";
 	
-	$link=conecta("fjmarkez_es_db");
+	$link=conecta("votaciones");
 	
 	$sql = mysql_query($sentencia_sql);
 	
@@ -282,7 +282,7 @@ function accion5()
 				echo "<input type='reset' value='Borrar' class='boton'>\n";
 				echo "</td>\n";
 				echo "<td align='center' valign='middle'>\n";
-				echo "<input type='button' value='Enviar' onclick='valida_1_Encuestas(this.form)' class='boton'>\n";
+				echo "<input type='button' value='Enviar' onclick='valida_1_encuestas(this.form)' class='boton'>\n";
 				echo "</td>\n";
 				echo "</tr>\n";
 			echo "</table>\n";
@@ -290,7 +290,7 @@ function accion5()
 		}
 	}
 	echo "<br>\n";
-	echo "<a href='./index.php'>salir</a> | <a href='./administracion.php'>administracion</a> | <a href='javascript:history.go(-1)'>lista de Encuestas a modificar</a><br>\n";	
+	echo "<a href='./index.php'>salir</a> | <a href='./administracion.php'>administracion</a> | <a href='javascript:history.go(-1)'>lista de encuestas a modificar</a><br>\n";	
 }
 
 // -----------------------------------------------------------------------------------------
@@ -305,7 +305,7 @@ function accion6()
 	
 	// Sentencia SQL para realizar la modificacion (UPDATE) de la tabla seleccionada con
 	// los datos enviados desdes "adm_encuestas3.php".
-	$sentencia_sql="UPDATE Encuestas SET ";
+	$sentencia_sql="UPDATE encuestas SET ";
 	$sentencia_sql.="Titulo_Encuesta = '".$_POST['Titulo_Encuesta']."', ";
 	$sentencia_sql.="Fecha_Inicio = '".$_POST['Fecha_Inicio']."', ";
 	$sentencia_sql.="Fecha_Fin = '".$_POST['Fecha_Fin']."', ";
@@ -313,7 +313,7 @@ function accion6()
 	$sentencia_sql.="WHERE Codigo_Encuesta = ".$_POST['Codigo_Encuesta'];
 			
 	// Ejecucion de la sentencia SQL.
-	$link=conecta("fjmarkez_es_db");
+	$link=conecta("votaciones");
 	$sql = mysql_query($sentencia_sql);
 	desconecta($link);
 	
@@ -345,8 +345,8 @@ function accion7()
 	// 1 ------------------------------------------------------------------------------------------------
 	// Sentencia SQL que muestra los datos de la tabla "Encuestas" de la encuesta
 	// seleccionada.
-	$sentencia_sql = "SELECT Titulo_Encuesta FROM Encuestas WHERE Codigo_Encuesta = ".$que_encuesta;
-	$link1=conecta("fjmarkez_es_db");
+	$sentencia_sql = "SELECT Titulo_Encuesta FROM encuestas WHERE Codigo_Encuesta = ".$que_encuesta;
+	$link1=conecta("votaciones");
 	$sql1 = mysql_query($sentencia_sql);
 	if (!$sql1) 
 	{
@@ -364,10 +364,10 @@ function accion7()
 			}while ($row1 = mysql_fetch_row($sql1));
 			desconecta($link1);
 	// 2 ------------------------------------------------------------------------------------------------
-			// Sentencia SQL que muestra las Preguntas de la tabla "Preguntas" de la encuesta
+			// Sentencia SQL que muestra las preguntas de la tabla "Preguntas" de la encuesta
 			// seleccionada.
-			$sentencia_sql = "SELECT Codigo_Pregunta,Titulo_Pregunta FROM Preguntas WHERE Codigo_Encuesta = ".$que_encuesta;
-			$enlace2=conecta("fjmarkez_es_db");
+			$sentencia_sql = "SELECT Codigo_Pregunta,Titulo_Pregunta FROM preguntas WHERE Codigo_Encuesta = ".$que_encuesta;
+			$enlace2=conecta("votaciones");
 			$sql2 = mysql_query($sentencia_sql);
 			if (!$sql2) 
 			{
@@ -379,7 +379,7 @@ function accion7()
 			{
 				if ($row2 = mysql_fetch_row($sql2))
 				{
-					echo "<form action='./Vota.php' method='POST'>\n";
+					echo "<form action='./vota.php' method='POST'>\n";
 					echo "<table border=0 cellpadding=2 cellspacing=0 align=center>\n";
 					do
 					{
@@ -393,8 +393,8 @@ function accion7()
 	// 3 ------------------------------------------------------------------------------------------------
 						// Sentencia SQL que calcula la suma total de votos realizados, esta 
 						// sentencia es necesaria para realizar la estadistica de la encuesta.
-						$sentencia_sql = "SELECT SUM(Cantidad_Votos) FROM Contestaciones WHERE Codigo_Encuesta = ".$que_encuesta." AND Codigo_Pregunta = ".$que_pregunta;
-						$link3=conecta("fjmarkez_es_db");
+						$sentencia_sql = "SELECT SUM(Cantidad_Votos) FROM contestaciones WHERE Codigo_Encuesta = ".$que_encuesta." AND Codigo_Pregunta = ".$que_pregunta;
+						$link3=conecta("votaciones");
 						$sql3 = mysql_query($sentencia_sql);
 						if (!$sql3) 
 						{
@@ -409,10 +409,10 @@ function accion7()
 								$total_votos=$row3[0];
 								
 	// 4 ------------------------------------------------------------------------------------------------
-								// Sentencia que hace que se muestre las Contestaciones de las
-								// Preguntas de la encuesta y para hallar la estadistica de ellas.
-								$sentencia_sql = "SELECT Codigo_Opcion,Titulo_Opcion,Cantidad_Votos FROM Contestaciones WHERE Codigo_Encuesta = ".$que_encuesta." AND Codigo_Pregunta = ".$que_pregunta;
-								$link4=conecta("fjmarkez_es_db");
+								// Sentencia que hace que se muestre las contestaciones de las
+								// preguntas de la encuesta y para hallar la estadistica de ellas.
+								$sentencia_sql = "SELECT Codigo_Opcion,Titulo_Opcion,Cantidad_Votos FROM contestaciones WHERE Codigo_Encuesta = ".$que_encuesta." AND Codigo_Pregunta = ".$que_pregunta;
+								$link4=conecta("votaciones");
 								$sql4 = mysql_query($sentencia_sql);
 								if (!$sql4) 
 								{
